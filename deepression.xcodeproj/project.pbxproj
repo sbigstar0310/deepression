@@ -11,6 +11,19 @@
 		9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */; };
 		9EFC8FFC2C210BAA004DB3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */; };
 		9EFC8FFF2C210BAA004DB3C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFE2C210BAA004DB3C2 /* Preview Assets.xcassets */; };
+		9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90052C2121B5004DB3C2 /* LocationManager.swift */; };
+		9EFC900A2C216143004DB3C2 /* FBRealtimeDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */; };
+		9EFC900D2C216168004DB3C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC900C2C216168004DB3C2 /* User.swift */; };
+		9EFC900F2C2161AF004DB3C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC900E2C2161AF004DB3C2 /* GoogleService-Info.plist */; };
+		9EFC90122C21621E004DB3C2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFC90112C21621E004DB3C2 /* FirebaseAnalytics */; };
+		9EFC90142C21621E004DB3C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFC90132C21621E004DB3C2 /* FirebaseAuth */; };
+		9EFC90162C21621E004DB3C2 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFC90152C21621E004DB3C2 /* FirebaseDatabase */; };
+		9EFC90192C216527004DB3C2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90182C216527004DB3C2 /* LoginView.swift */; };
+		9EFC901B2C216535004DB3C2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC901A2C216535004DB3C2 /* RegisterView.swift */; };
+		9EFC901D2C216679004DB3C2 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC901C2C216679004DB3C2 /* AuthManager.swift */; };
+		9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC901E2C216C1D004DB3C2 /* CollectUserGPSView.swift */; };
+		9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90202C216F28004DB3C2 /* UserManager.swift */; };
+		9EFC90232C217692004DB3C2 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90222C217692004DB3C2 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +32,17 @@
 		9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EFC8FFE2C210BAA004DB3C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9EFC90052C2121B5004DB3C2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		9EFC90072C2128E2004DB3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRealtimeDatabaseManager.swift; sourceTree = "<group>"; };
+		9EFC900C2C216168004DB3C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9EFC900E2C2161AF004DB3C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9EFC90182C216527004DB3C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9EFC901A2C216535004DB3C2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		9EFC901C2C216679004DB3C2 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		9EFC901E2C216C1D004DB3C2 /* CollectUserGPSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectUserGPSView.swift; sourceTree = "<group>"; };
+		9EFC90202C216F28004DB3C2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		9EFC90222C217692004DB3C2 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFC90162C21621E004DB3C2 /* FirebaseDatabase in Frameworks */,
+				9EFC90122C21621E004DB3C2 /* FirebaseAnalytics in Frameworks */,
+				9EFC90142C21621E004DB3C2 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +79,11 @@
 			isa = PBXGroup;
 			children = (
 				9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */,
-				9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */,
+				9EFC900B2C21615E004DB3C2 /* Model */,
+				9EFC90172C21623D004DB3C2 /* View */,
+				9EFC90082C21612F004DB3C2 /* Manager */,
+				9EFC90072C2128E2004DB3C2 /* Info.plist */,
+				9EFC900E2C2161AF004DB3C2 /* GoogleService-Info.plist */,
 				9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */,
 				9EFC8FFD2C210BAA004DB3C2 /* Preview Content */,
 			);
@@ -65,6 +96,37 @@
 				9EFC8FFE2C210BAA004DB3C2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9EFC90082C21612F004DB3C2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
+				9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */,
+				9EFC901C2C216679004DB3C2 /* AuthManager.swift */,
+				9EFC90202C216F28004DB3C2 /* UserManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9EFC900B2C21615E004DB3C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9EFC900C2C216168004DB3C2 /* User.swift */,
+				9EFC90222C217692004DB3C2 /* DateFormatter.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9EFC90172C21623D004DB3C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */,
+				9EFC90182C216527004DB3C2 /* LoginView.swift */,
+				9EFC901A2C216535004DB3C2 /* RegisterView.swift */,
+				9EFC901E2C216C1D004DB3C2 /* CollectUserGPSView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +145,11 @@
 			dependencies = (
 			);
 			name = deepression;
+			packageProductDependencies = (
+				9EFC90112C21621E004DB3C2 /* FirebaseAnalytics */,
+				9EFC90132C21621E004DB3C2 /* FirebaseAuth */,
+				9EFC90152C21621E004DB3C2 /* FirebaseDatabase */,
+			);
 			productName = deepression;
 			productReference = 9EFC8FF42C210BA8004DB3C2 /* deepression.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +178,9 @@
 				Base,
 			);
 			mainGroup = 9EFC8FEB2C210BA8004DB3C2;
+			packageReferences = (
+				9EFC90102C21621E004DB3C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9EFC8FF52C210BA8004DB3C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFC8FFF2C210BAA004DB3C2 /* Preview Assets.xcassets in Resources */,
+				9EFC900F2C2161AF004DB3C2 /* GoogleService-Info.plist in Resources */,
 				9EFC8FFC2C210BAA004DB3C2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +208,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFC90192C216527004DB3C2 /* LoginView.swift in Sources */,
+				9EFC901D2C216679004DB3C2 /* AuthManager.swift in Sources */,
 				9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */,
+				9EFC900A2C216143004DB3C2 /* FBRealtimeDatabaseManager.swift in Sources */,
+				9EFC901B2C216535004DB3C2 /* RegisterView.swift in Sources */,
+				9EFC90232C217692004DB3C2 /* DateFormatter.swift in Sources */,
 				9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */,
+				9EFC900D2C216168004DB3C2 /* User.swift in Sources */,
+				9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */,
+				9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */,
+				9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,11 +355,15 @@
 				DEVELOPMENT_TEAM = DUJ2KB7PM5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = deepression/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "항상 사용 설명 텍스트";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱 사용중 사용 설명 텍스트";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -287,6 +371,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sbigstar.deepression;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,11 +392,15 @@
 				DEVELOPMENT_TEAM = DUJ2KB7PM5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = deepression/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "항상 사용 설명 텍스트";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "앱 사용중 사용 설명 텍스트";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +408,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sbigstar.deepression;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -344,6 +440,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9EFC90102C21621E004DB3C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9EFC90112C21621E004DB3C2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9EFC90102C21621E004DB3C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		9EFC90132C21621E004DB3C2 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9EFC90102C21621E004DB3C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		9EFC90152C21621E004DB3C2 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9EFC90102C21621E004DB3C2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9EFC8FEC2C210BA8004DB3C2 /* Project object */;
 }
