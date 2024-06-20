@@ -24,6 +24,7 @@
 		9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC901E2C216C1D004DB3C2 /* CollectUserGPSView.swift */; };
 		9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90202C216F28004DB3C2 /* UserManager.swift */; };
 		9EFC90232C217692004DB3C2 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90222C217692004DB3C2 /* DateFormatter.swift */; };
+		9EFC90512C23E53B004DB3C2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		9EFC901E2C216C1D004DB3C2 /* CollectUserGPSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectUserGPSView.swift; sourceTree = "<group>"; };
 		9EFC90202C216F28004DB3C2 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		9EFC90222C217692004DB3C2 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		9EFC90082C21612F004DB3C2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
 				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
 				9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */,
 				9EFC901C2C216679004DB3C2 /* AuthManager.swift */,
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFC90512C23E53B004DB3C2 /* NetworkManager.swift in Sources */,
 				9EFC90192C216527004DB3C2 /* LoginView.swift in Sources */,
 				9EFC901D2C216679004DB3C2 /* AuthManager.swift in Sources */,
 				9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */,
