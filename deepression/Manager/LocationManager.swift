@@ -9,12 +9,16 @@ import Foundation
 import CoreLocation
 import UIKit
 
-class LocationManager: NSObject {
+class LocationManager: NSObject, ObservableObject {
+  @Published var lastUpdatedDate: Date = Date(timeIntervalSince1970: 0)
+  
   private var locationManager = CLLocationManager()
   private let fbRealtimeDataManager = FBRealtimeDataManager.shared
   private let userManager = UserManager.shared
+  private var timer: Timer?
   
-  override init() {
+  static let shared = LocationManager()
+  override private init() {
     super.init()
     // delegate 지정
     locationManager.delegate = self
@@ -28,11 +32,11 @@ class LocationManager: NSObject {
   }
   
   
-  func startUpdateLocationInTime() {
+  func startUpdateLocationWithTimer() {
     // 주어진 시간(sec)마다 위치 정보 업데이트
     let sec: Double = 15 * 60 // 15분 마다 서버에 업로드
-    var timer = Timer.scheduledTimer(timeInterval: sec, target: self, selector: #selector(requestLocation), userInfo: nil, repeats: true)
-    RunLoop.current.add(timer, forMode: .default)
+    timer = Timer.scheduledTimer(timeInterval: sec, target: self, selector: #selector(requestLocation), userInfo: nil, repeats: true)
+    RunLoop.current.add(timer!, forMode: .default)
     
     // 사용자의 장거리 위치 변화 감지
     startSignificantChangeUpdates()
@@ -43,18 +47,31 @@ class LocationManager: NSObject {
     locationManager.requestLocation()
   }
   
+  func stopUpdateLocationWithTimer() {
+    timer?.invalidate()
+    timer = nil
+  }
+  
+  func startUpdatingLocation() {
+    locationManager.startUpdatingLocation()
+  }
+  
+  func stopUpdatingLocation() {
+    locationManager.stopUpdatingLocation()
+  }
+  
   func startSignificantChangeUpdates() {
     // 사용자의 장거리 이동 감지 (수 백에서 수 킬로미터)
     // 앱이 종료된 상황에서도 감지 가능
     if CLLocationManager.significantLocationChangeMonitoringAvailable() {
-          locationManager.startMonitoringSignificantLocationChanges()
-      }
+      locationManager.startMonitoringSignificantLocationChanges()
+    }
   }
-
+  
   func stopSignificantChangeUpdates() {
-      locationManager.stopMonitoringSignificantLocationChanges()
+    locationManager.stopMonitoringSignificantLocationChanges()
   }
-
+  
   func requestLocationPermission() {
     // 앱 사용 중 사용 권한 요청
     locationManager.requestWhenInUseAuthorization()
@@ -66,36 +83,55 @@ class LocationManager: NSObject {
 // MARK: - CLLocationMangerDelegate에 대한 코드
 extension LocationManager: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    let calendar = Calendar.current
+    let currentDate = Date()
+    
+    // 마지막 업데이트 날짜로부터 업데이트 간격 구하기
+    guard let differenceInMinutes = Calendar.current.dateComponents([.minute], from: lastUpdatedDate, to: currentDate).minute else {
+      print("오류: 시간 차이가 nil입니다.")
+      return
+    }
+    
+    if differenceInMinutes < 15 {
+      // 시간 차이가 15분 이내인 경우: Update Pass
+      return
+    }
+    
     // 앱의 상태 확인
     let appState = UIApplication.shared.applicationState
     
     switch appState {
     case .active:
-      print("포그라운드에서 위치 업데이트")
+      print("환경: Foreground")
     case .background:
-      print("백그라운드에서 위치 업데이트")
+      print("환경: Background")
     default:
-      print("기타 상태에서 위치 업데이트")
+      print("환경: 기타")
     }
     
-    print("시간: ", Date())
+    print("업데이트 시간: \(fbDateFormatter.string(from: currentDate))")
     
     if let location = locations.last {
-      print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
+      print("위도: \(location.coordinate.latitude), 경도: \(location.coordinate.longitude)")
       
-      print("서버에 업로드")
       guard let user = userManager.user else {
         print("서버 업로드 실패: 유저가 로그인 상태가 아닙니다.")
         return
       }
       
+      // 마지막 업데이트 날짜 최신화
+      lastUpdatedDate = currentDate
+      
+      // 서버에 위치 정보 업로드
       fbRealtimeDataManager.addUserData(user: user, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
+    
+    print("---------------------------------------------------------")
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
     // 오류 처리
-    print("Location error:", error.localizedDescription)
+    print("Location 오류:", error.localizedDescription)
   }
   
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
