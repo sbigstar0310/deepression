@@ -32,7 +32,7 @@ class FBRealtimeDataManager: ObservableObject {
     let childRef = ref.child("Users").child("\(user.id)").child("Locations").childByAutoId()
     
     childRef.setValue([
-      "id" : childRef.key!,
+      "id" : childRef.key,
       "latitude" : "\(latitude)",
       "longitude" : "\(longitude)",
       "obtained_at" : fbDateFormatter.string(from: Date()),
