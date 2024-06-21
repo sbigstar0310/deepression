@@ -11,25 +11,11 @@ import SwiftUI
 class CollectUserGPSViewModel {
   private let locationManager = LocationManager.shared
   private let authManager = AuthManager.shared
+  private let userDefaultManager = UserDefaultManager()
   
-  func getLastUpdatedDate() -> Date {
-    // 최근 업데이트 된 날짜를 가져온다.
-    locationManager.lastUpdatedDate
-  }
-  
-  func startUpdatingUserLocationWithTimer() {
-    // Timer를 이용하여 15분간 유저의 위치를 업데이트 시작
-    locationManager.startUpdateLocationWithTimer()
-    // SLC도 업데이트 시작
-    locationManager.startSignificantChangeUpdates()
-  }
-  
-  func stopUpdatingUserLocationWithTimer() {
-    print("타이머를 이용한 업데이트 종료")
-    // Timer를 이용하는 업데이트 종료
-    locationManager.stopUpdateLocationWithTimer()
-    // SLC 업데이트 종료
-    locationManager.stopSignificantChangeUpdates()
+  func getLastUpdatedDate() -> Date? {
+    // UserDefault에서 최근 업데이트 된 날짜를 가져온다.
+    userDefaultManager.getLastUpdateDate()
   }
   
   func startUpdatingUserLocation() {
@@ -51,7 +37,7 @@ class CollectUserGPSViewModel {
 struct CollectUserGPSView: View {
   let viewModel = CollectUserGPSViewModel()
   @StateObject var userManager: UserManager
-  @State private var lastUpdatedDate = "최근 업데이트 없음"
+  @State private var lastUpdatedDate: Date? = nil
   
   var body: some View {
     VStack {
@@ -60,26 +46,11 @@ struct CollectUserGPSView: View {
           .font(.title2)
           .fontWeight(.bold)
         ) {
-          Text(lastUpdatedDate)
+          Text(lastUpdatedDate == nil ? "최근 업데이트 없음" : fbDateFormatter.string(from: lastUpdatedDate!))
         }
         .listRowSeparator(.hidden)
         
-        Section(header: Text("Timer를 통해 위치 정보 받기")
-          .font(.title2)
-          .fontWeight(.bold)
-        ) {
-          Button("위치 정보 받기 시작") {
-            viewModel.startUpdatingUserLocationWithTimer()
-          }
-          
-          Button("위치 정보 받기 종료") {
-            viewModel.stopUpdatingUserLocationWithTimer()
-          }
-        }
-        .buttonStyle(DefaultButtonStyle())
-        .listRowSeparator(.hidden)
-        
-        Section(header: Text("startUpdatingLocation를 통해 위치 정보 받기")
+        Section(header: Text("위치 정보")
           .font(.title3)
           .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         ) {
@@ -102,8 +73,11 @@ struct CollectUserGPSView: View {
       }
       .buttonStyle(BorderedProminentButtonStyle())
     }
+    .onAppear {
+      lastUpdatedDate = viewModel.getLastUpdatedDate()
+    }
     .refreshable {
-      lastUpdatedDate = fbDateFormatter.string(from: viewModel.getLastUpdatedDate())
+      lastUpdatedDate = viewModel.getLastUpdatedDate()
     }
   }
 }
