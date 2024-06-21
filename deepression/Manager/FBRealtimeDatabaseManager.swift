@@ -22,21 +22,29 @@ class FBRealtimeDataManager: ObservableObject {
     self.decoder = JSONDecoder()
   }
   
-  func addUserData(user: User, latitude: Double, longitude: Double) {
+  enum FBRealtimeDataManagerError: Error {
+    case referenceUnavailable
+  }
+  
+  func addUserData(user: User, latitude: Double, longitude: Double, updateDate: Date) async throws {
     // 유저 정보 (User Info)
     guard let ref = ref else {
       print("error in getting ref")
-      return
+      throw FBRealtimeDataManagerError.referenceUnavailable
     }
     
     let childRef = ref.child("Users").child("\(user.id)").child("Locations").childByAutoId()
     
-    childRef.setValue([
-      "id" : childRef.key,
-      "latitude" : "\(latitude)",
-      "longitude" : "\(longitude)",
-      "obtained_at" : fbDateFormatter.string(from: Date()),
-    ])
+    do {
+      try await childRef.setValue([
+        "id" : childRef.key,
+        "latitude" : "\(latitude)",
+        "longitude" : "\(longitude)",
+        "obtained_at" : fbDateFormatter.string(from: updateDate),
+      ])
+    } catch {
+      throw error
+    }
   }
   
   func deleteUserData(user: User) {
