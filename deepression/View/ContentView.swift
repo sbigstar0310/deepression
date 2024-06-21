@@ -15,7 +15,7 @@ struct ContentView: View {
   var body: some View {
     VStack {
       if userManager.user != nil {
-        CollectUserGPSView(userManager: userManager)
+        HomeTabView(userManager: userManager)
       } else {
         LoginView(userManager: userManager)
       }
