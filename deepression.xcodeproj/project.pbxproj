@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0F549C2C250C16007F0C48 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549B2C250C16007F0C48 /* UserDefaultManager.swift */; };
+		9E0F549E2C251850007F0C48 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549D2C251850007F0C48 /* Location.swift */; };
+		9E0F54A02C251D22007F0C48 /* LocationUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549F2C251D22007F0C48 /* LocationUpdateManager.swift */; };
+		9E0F54A22C2522F5007F0C48 /* OfflineSavedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F54A12C2522F5007F0C48 /* OfflineSavedLocationView.swift */; };
+		9E0F54A42C2537A0007F0C48 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F54A32C2537A0007F0C48 /* HomeTabView.swift */; };
 		9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */; };
 		9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */; };
 		9EFC8FFC2C210BAA004DB3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */; };
@@ -28,6 +33,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E0F549B2C250C16007F0C48 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		9E0F549D2C251850007F0C48 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		9E0F549F2C251D22007F0C48 /* LocationUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUpdateManager.swift; sourceTree = "<group>"; };
+		9E0F54A12C2522F5007F0C48 /* OfflineSavedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSavedLocationView.swift; sourceTree = "<group>"; };
+		9E0F54A32C2537A0007F0C48 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		9EFC8FF42C210BA8004DB3C2 /* deepression.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deepression.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deepressionApp.swift; sourceTree = "<group>"; };
 		9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,11 +113,13 @@
 		9EFC90082C21612F004DB3C2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
+				9E0F549F2C251D22007F0C48 /* LocationUpdateManager.swift */,
 				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
+				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
 				9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */,
 				9EFC901C2C216679004DB3C2 /* AuthManager.swift */,
 				9EFC90202C216F28004DB3C2 /* UserManager.swift */,
+				9E0F549B2C250C16007F0C48 /* UserDefaultManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -117,6 +129,7 @@
 			children = (
 				9EFC900C2C216168004DB3C2 /* User.swift */,
 				9EFC90222C217692004DB3C2 /* DateFormatter.swift */,
+				9E0F549D2C251850007F0C48 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,7 +140,9 @@
 				9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */,
 				9EFC90182C216527004DB3C2 /* LoginView.swift */,
 				9EFC901A2C216535004DB3C2 /* RegisterView.swift */,
+				9E0F54A32C2537A0007F0C48 /* HomeTabView.swift */,
 				9EFC901E2C216C1D004DB3C2 /* CollectUserGPSView.swift */,
+				9E0F54A12C2522F5007F0C48 /* OfflineSavedLocationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,14 +227,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFC90512C23E53B004DB3C2 /* NetworkManager.swift in Sources */,
+				9E0F54A02C251D22007F0C48 /* LocationUpdateManager.swift in Sources */,
 				9EFC90192C216527004DB3C2 /* LoginView.swift in Sources */,
+				9E0F54A22C2522F5007F0C48 /* OfflineSavedLocationView.swift in Sources */,
 				9EFC901D2C216679004DB3C2 /* AuthManager.swift in Sources */,
 				9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */,
 				9EFC900A2C216143004DB3C2 /* FBRealtimeDatabaseManager.swift in Sources */,
 				9EFC901B2C216535004DB3C2 /* RegisterView.swift in Sources */,
+				9E0F549E2C251850007F0C48 /* Location.swift in Sources */,
 				9EFC90232C217692004DB3C2 /* DateFormatter.swift in Sources */,
 				9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */,
+				9E0F54A42C2537A0007F0C48 /* HomeTabView.swift in Sources */,
 				9EFC900D2C216168004DB3C2 /* User.swift in Sources */,
+				9E0F549C2C250C16007F0C48 /* UserDefaultManager.swift in Sources */,
 				9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */,
 				9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */,
 				9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */,
