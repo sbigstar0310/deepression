@@ -72,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func scheduleAppRefresh() {
+    // 참고
+    // 여러 번 스케줄 요청이 제출되더라도, 실제로 스케줄된 작업은 최신 작업 하나만 유지된다.
     let request = BGAppRefreshTaskRequest(identifier: "com.sbigstar.deepression.refresh")
     
     do {
