@@ -24,7 +24,7 @@ class CollectUserGPSViewModel {
   }
   
   func stopUpdatingUserLocation() {
-    print("CLLocation를 이용한 업데이트 종료")
+    print("위치/Wifi 정보 받기 종료")
     locationManager.stopUpdatingLocation()
     locationManager.stopSignificantChangeUpdates()
   }
@@ -54,17 +54,16 @@ struct CollectUserGPSView: View {
           .font(.title3)
           .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         ) {
-          Button("위치 정보 받기 시작") {
+          Button("위치/Wifi 정보 받기 시작") {
             viewModel.startUpdatingUserLocation()
           }
           
-          Button("위치 정보 받기 종료") {
+          Button("위치/Wifi 정보 받기 종료") {
             viewModel.stopUpdatingUserLocation()
           }
         }
         .buttonStyle(DefaultButtonStyle())
         .listRowSeparator(.hidden)
-        
       }
       
       Button("로그아웃") {
