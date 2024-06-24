@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		9E0F549C2C250C16007F0C48 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549B2C250C16007F0C48 /* UserDefaultManager.swift */; };
 		9E0F549E2C251850007F0C48 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549D2C251850007F0C48 /* Location.swift */; };
-		9E0F54A02C251D22007F0C48 /* LocationUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549F2C251D22007F0C48 /* LocationUpdateManager.swift */; };
+		9E0F54A02C251D22007F0C48 /* FBUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F549F2C251D22007F0C48 /* FBUpdateManager.swift */; };
 		9E0F54A22C2522F5007F0C48 /* OfflineSavedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F54A12C2522F5007F0C48 /* OfflineSavedLocationView.swift */; };
 		9E0F54A42C2537A0007F0C48 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0F54A32C2537A0007F0C48 /* HomeTabView.swift */; };
+		9E3C63902C293BF7001154DC /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3C638F2C293BF7001154DC /* NetworkExtension.framework */; };
+		9E3C63932C293BF7001154DC /* AppProxyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63922C293BF7001154DC /* AppProxyProvider.swift */; };
+		9E3C63982C293BF7001154DC /* myNetWorkExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9E3C638D2C293BF7001154DC /* myNetWorkExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9E3C639F2C2945E5001154DC /* Wifi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C639E2C2945E5001154DC /* Wifi.swift */; };
 		9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */; };
 		9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */; };
 		9EFC8FFC2C210BAA004DB3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */; };
@@ -32,12 +36,43 @@
 		9EFC90512C23E53B004DB3C2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9E3C63962C293BF7001154DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9EFC8FEC2C210BA8004DB3C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E3C638C2C293BF7001154DC;
+			remoteInfo = myNetWorkExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9E3C63992C293BF7001154DC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9E3C63982C293BF7001154DC /* myNetWorkExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9E0F549B2C250C16007F0C48 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		9E0F549D2C251850007F0C48 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		9E0F549F2C251D22007F0C48 /* LocationUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUpdateManager.swift; sourceTree = "<group>"; };
+		9E0F549F2C251D22007F0C48 /* FBUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUpdateManager.swift; sourceTree = "<group>"; };
 		9E0F54A12C2522F5007F0C48 /* OfflineSavedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSavedLocationView.swift; sourceTree = "<group>"; };
 		9E0F54A32C2537A0007F0C48 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		9E3C638D2C293BF7001154DC /* myNetWorkExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = myNetWorkExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E3C638F2C293BF7001154DC /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		9E3C63922C293BF7001154DC /* AppProxyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProxyProvider.swift; sourceTree = "<group>"; };
+		9E3C63942C293BF7001154DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E3C63952C293BF7001154DC /* myNetWorkExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myNetWorkExtension.entitlements; sourceTree = "<group>"; };
+		9E3C639D2C2944BA001154DC /* deepression.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = deepression.entitlements; sourceTree = "<group>"; };
+		9E3C639E2C2945E5001154DC /* Wifi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wifi.swift; sourceTree = "<group>"; };
 		9EFC8FF42C210BA8004DB3C2 /* deepression.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deepression.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deepressionApp.swift; sourceTree = "<group>"; };
 		9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +93,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9E3C638A2C293BF7001154DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E3C63902C293BF7001154DC /* NetworkExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9EFC8FF12C210BA8004DB3C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,10 +114,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E3C638E2C293BF7001154DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E3C638F2C293BF7001154DC /* NetworkExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E3C63912C293BF7001154DC /* myNetWorkExtension */ = {
+			isa = PBXGroup;
+			children = (
+				9E3C63922C293BF7001154DC /* AppProxyProvider.swift */,
+				9E3C63942C293BF7001154DC /* Info.plist */,
+				9E3C63952C293BF7001154DC /* myNetWorkExtension.entitlements */,
+			);
+			path = myNetWorkExtension;
+			sourceTree = "<group>";
+		};
 		9EFC8FEB2C210BA8004DB3C2 = {
 			isa = PBXGroup;
 			children = (
 				9EFC8FF62C210BA8004DB3C2 /* deepression */,
+				9E3C63912C293BF7001154DC /* myNetWorkExtension */,
+				9E3C638E2C293BF7001154DC /* Frameworks */,
 				9EFC8FF52C210BA8004DB3C2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				9EFC8FF42C210BA8004DB3C2 /* deepression.app */,
+				9E3C638D2C293BF7001154DC /* myNetWorkExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +154,7 @@
 		9EFC8FF62C210BA8004DB3C2 /* deepression */ = {
 			isa = PBXGroup;
 			children = (
+				9E3C639D2C2944BA001154DC /* deepression.entitlements */,
 				9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */,
 				9EFC900B2C21615E004DB3C2 /* Model */,
 				9EFC90172C21623D004DB3C2 /* View */,
@@ -113,7 +178,7 @@
 		9EFC90082C21612F004DB3C2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				9E0F549F2C251D22007F0C48 /* LocationUpdateManager.swift */,
+				9E0F549F2C251D22007F0C48 /* FBUpdateManager.swift */,
 				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
 				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
 				9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */,
@@ -130,6 +195,7 @@
 				9EFC900C2C216168004DB3C2 /* User.swift */,
 				9EFC90222C217692004DB3C2 /* DateFormatter.swift */,
 				9E0F549D2C251850007F0C48 /* Location.swift */,
+				9E3C639E2C2945E5001154DC /* Wifi.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +216,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9E3C638C2C293BF7001154DC /* myNetWorkExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E3C639C2C293BF7001154DC /* Build configuration list for PBXNativeTarget "myNetWorkExtension" */;
+			buildPhases = (
+				9E3C63892C293BF7001154DC /* Sources */,
+				9E3C638A2C293BF7001154DC /* Frameworks */,
+				9E3C638B2C293BF7001154DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = myNetWorkExtension;
+			productName = myNetWorkExtension;
+			productReference = 9E3C638D2C293BF7001154DC /* myNetWorkExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		9EFC8FF32C210BA8004DB3C2 /* deepression */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9EFC90022C210BAA004DB3C2 /* Build configuration list for PBXNativeTarget "deepression" */;
@@ -157,10 +240,12 @@
 				9EFC8FF02C210BA8004DB3C2 /* Sources */,
 				9EFC8FF12C210BA8004DB3C2 /* Frameworks */,
 				9EFC8FF22C210BA8004DB3C2 /* Resources */,
+				9E3C63992C293BF7001154DC /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9E3C63972C293BF7001154DC /* PBXTargetDependency */,
 			);
 			name = deepression;
 			packageProductDependencies = (
@@ -182,6 +267,9 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					9E3C638C2C293BF7001154DC = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					9EFC8FF32C210BA8004DB3C2 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -204,11 +292,19 @@
 			projectRoot = "";
 			targets = (
 				9EFC8FF32C210BA8004DB3C2 /* deepression */,
+				9E3C638C2C293BF7001154DC /* myNetWorkExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9E3C638B2C293BF7001154DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9EFC8FF22C210BA8004DB3C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,12 +318,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9E3C63892C293BF7001154DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E3C63932C293BF7001154DC /* AppProxyProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9EFC8FF02C210BA8004DB3C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9EFC90512C23E53B004DB3C2 /* NetworkManager.swift in Sources */,
-				9E0F54A02C251D22007F0C48 /* LocationUpdateManager.swift in Sources */,
+				9E0F54A02C251D22007F0C48 /* FBUpdateManager.swift in Sources */,
 				9EFC90192C216527004DB3C2 /* LoginView.swift in Sources */,
 				9E0F54A22C2522F5007F0C48 /* OfflineSavedLocationView.swift in Sources */,
 				9EFC901D2C216679004DB3C2 /* AuthManager.swift in Sources */,
@@ -240,6 +344,7 @@
 				9E0F54A42C2537A0007F0C48 /* HomeTabView.swift in Sources */,
 				9EFC900D2C216168004DB3C2 /* User.swift in Sources */,
 				9E0F549C2C250C16007F0C48 /* UserDefaultManager.swift in Sources */,
+				9E3C639F2C2945E5001154DC /* Wifi.swift in Sources */,
 				9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */,
 				9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */,
 				9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */,
@@ -248,7 +353,67 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		9E3C63972C293BF7001154DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E3C638C2C293BF7001154DC /* myNetWorkExtension */;
+			targetProxy = 9E3C63962C293BF7001154DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		9E3C639A2C293BF7001154DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = myNetWorkExtension/myNetWorkExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DUJ2KB7PM5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = myNetWorkExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = myNetWorkExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sbigstar.deepression.myNetWorkExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E3C639B2C293BF7001154DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = myNetWorkExtension/myNetWorkExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DUJ2KB7PM5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = myNetWorkExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = myNetWorkExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sbigstar.deepression.myNetWorkExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		9EFC90002C210BAA004DB3C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -371,8 +536,10 @@
 		9EFC90032C210BAA004DB3C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = deepression/deepression.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"deepression/Preview Content\"";
@@ -408,8 +575,10 @@
 		9EFC90042C210BAA004DB3C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = deepression/deepression.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"deepression/Preview Content\"";
@@ -445,6 +614,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9E3C639C2C293BF7001154DC /* Build configuration list for PBXNativeTarget "myNetWorkExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E3C639A2C293BF7001154DC /* Debug */,
+				9E3C639B2C293BF7001154DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9EFC8FEF2C210BA8004DB3C2 /* Build configuration list for PBXProject "deepression" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
