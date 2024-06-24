@@ -10,8 +10,9 @@ import CoreLocation
 import UIKit
 
 class LocationManager: NSObject, ObservableObject {
-  private var locationManager = CLLocationManager()
-  private let locationUpdateManager = LocationUpdateManager()
+  private let locationManager = CLLocationManager()
+  private let networkManager = NetworkManager.shared
+  private let fbUpdateManager = FBUpdateManager.shared
   
   static let shared = LocationManager()
   override private init() {
@@ -73,10 +74,12 @@ extension LocationManager: CLLocationManagerDelegate {
       return
     }
     
-    let location = Location(updatedDate: Date(), latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
-    
-    
-    locationUpdateManager.UpdateLocationToFireBase(location: location)
+    Task {
+      let wifi = await networkManager.getCurrentWiFiInfo()
+      let location = Location(updatedDate: Date(), latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
+      await fbUpdateManager.updateWifiToFirebase(wifi: wifi)
+      await fbUpdateManager.updateLocationToFireBase(location: location)
+    }
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
