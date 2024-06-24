@@ -26,7 +26,28 @@ class FBRealtimeDataManager: ObservableObject {
     case referenceUnavailable
   }
   
-  func addUserData(user: User, latitude: Double, longitude: Double, updateDate: Date) async throws {
+  func addWifiData(user: User, wifi: Wifi) async throws {
+    guard let ref = ref else {
+      print("error in getting ref")
+      throw FBRealtimeDataManagerError.referenceUnavailable
+    }
+    
+    let childRef = ref.child("Users").child("\(user.id)").child("Wifies").childByAutoId()
+    
+    do {
+      try await childRef.setValue([
+        "id" : childRef.key,
+        "ssid" : "\(wifi.ssid)",
+        "bssid" : "\(wifi.bssid)",
+        "rssi" : "\(wifi.rssi)",
+        "obtained_at" : fbDateFormatter.string(from: wifi.updatedDate),
+      ])
+    } catch {
+      throw error
+    }
+  }
+  
+  func addLocationData(user: User, location: Location) async throws {
     // 유저 정보 (User Info)
     guard let ref = ref else {
       print("error in getting ref")
@@ -38,9 +59,9 @@ class FBRealtimeDataManager: ObservableObject {
     do {
       try await childRef.setValue([
         "id" : childRef.key,
-        "latitude" : "\(latitude)",
-        "longitude" : "\(longitude)",
-        "obtained_at" : fbDateFormatter.string(from: updateDate),
+        "latitude" : "\(location.latitude)",
+        "longitude" : "\(location.longitude)",
+        "obtained_at" : fbDateFormatter.string(from: location.updatedDate),
       ])
     } catch {
       throw error
