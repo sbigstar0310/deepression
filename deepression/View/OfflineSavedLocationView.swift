@@ -10,7 +10,8 @@ import SwiftUI
 
 struct OfflineSavedLocationView: View {
   let userDefaultManager = UserDefaultManager()
-  let locationUpdateManager = LocationUpdateManager()
+  let fbUpdateManager = FBUpdateManager.shared
+  
   @State private var savedLocations: [Location] = []
   @State private var progress: Double = 0
   
@@ -57,9 +58,11 @@ struct OfflineSavedLocationView: View {
         userDefaultManager.clearLocation()
         
         // 기존 데이터 모두 서버에 업로드 시도
-        for (index, location) in savedLocations.enumerated() {
-          locationUpdateManager.UpdateLocationToFireBase(location: location)
-          progress = (index / savedLocations.count)
+        Task {
+          for (index, location) in savedLocations.enumerated() {
+            await fbUpdateManager.updateLocationToFireBase(location: location)
+            progress = Double((index / savedLocations.count))
+          }
         }
       }
     }
