@@ -14,6 +14,8 @@ actor FBUpdateManager {
   private let userManager = UserManager.shared
   private let userDefaultManager = UserDefaultManager()
   private let networkManager = NetworkManager.shared
+  // 업데이트를 진행할 시간 간격 (단위: 분)
+  private let minIntervalMinute = 15
   
   static let shared = FBUpdateManager()
   private init() {}
@@ -78,7 +80,7 @@ actor FBUpdateManager {
     let updatedDate = wifi.updatedDate
     
     // 15분의 업데이트 간격을 가지는지 확인
-    if !isUpdateIntervalValid(intervalMinute: 15, updateDate: updatedDate) {
+    if !isUpdateIntervalValid(intervalMinute: minIntervalMinute, updateDate: updatedDate) {
       return
     }
     
@@ -89,7 +91,7 @@ actor FBUpdateManager {
     
     do {
       try await fbRealtimeDataManager.addWifiData(user: user, wifi: wifi)
-      print("업데이트 시간: \(fbDateFormatter.string(from: updateDate))")
+      print("업데이트 시간: \(fbDateFormatter.string(from: wifi.updatedDate))")
       print("ssid: \(wifi.ssid)")
       print("bssid: \(wifi.bssid)")
       print("rssi: \(wifi.rssi)")
@@ -104,10 +106,10 @@ actor FBUpdateManager {
     let updateDate = location.updatedDate
     
     // 15분의 업데이트 간격을 가지는지 확인
-    if !isUpdateIntervalValid(intervalMinute: 15, updateDate: updateDate) {
+    if !isUpdateIntervalValid(intervalMinute: minIntervalMinute, updateDate: updateDate) {
       return
     }
-  
+    
     // 네트워크 상태 확인
     guard isNetworkValid() else {
       doOfflineSync(location: location)
@@ -121,23 +123,21 @@ actor FBUpdateManager {
     }
     
     // 서버에 위치 정보 업로드
-    Task {
-      do {
-        try await fbRealtimeDataManager.addLocationData(user: user, location: location)
-        
-        // 마지막 업데이트 날짜 디바이스에 저장 (기존 날짜보다 더 최신의 날짜인 경우에만)
-        let lastUpdatedDate = userDefaultManager.getLastUpdateDate() ?? Date(timeIntervalSince1970: 0)
-        userDefaultManager.setLastUpdateDate(date: max(lastUpdatedDate, location.updatedDate))
-        
-        print("업데이트 시간: \(fbDateFormatter.string(from: updateDate))")
-        print("위도: \(location.latitude), 경도: \(location.longitude)")
-        print("---------------------------------------------------------")
-      } catch {
-        print("Firebase에 location 업데이트 오류: \(error.localizedDescription)")
-        
-        // Firebase 업로드 에러가 발생한 경우, 오프라인 싱크
-        doOfflineSync(location: location)
-      }
+    do {
+      try await fbRealtimeDataManager.addLocationData(user: user, location: location)
+      
+      // 마지막 업데이트 날짜 디바이스에 저장 (기존 날짜보다 더 최신의 날짜인 경우에만)
+      let lastUpdatedDate = userDefaultManager.getLastUpdateDate() ?? Date(timeIntervalSince1970: 0)
+      userDefaultManager.setLastUpdateDate(date: max(lastUpdatedDate, location.updatedDate))
+      
+      print("업데이트 시간: \(fbDateFormatter.string(from: updateDate))")
+      print("위도: \(location.latitude), 경도: \(location.longitude)")
+      print("---------------------------------------------------------")
+    } catch {
+      print("Firebase에 location 업데이트 오류: \(error.localizedDescription)")
+      
+      // Firebase 업로드 에러가 발생한 경우, 오프라인 싱크
+      doOfflineSync(location: location)
     }
   }
 }
