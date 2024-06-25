@@ -32,12 +32,25 @@ class CollectUserGPSViewModel {
   func doLogOut() {
     authManager.Logout()
   }
+  
+  func openAppLocationSettings() {
+     if let url = URL(string: UIApplication.openSettingsURLString) {
+         if UIApplication.shared.canOpenURL(url) {
+             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+         }
+     }
+   }
+  
+  func isAuthorizationStatusAlways() -> Bool {
+    return locationManager.authorizationStatus == .authorizedAlways
+  }
 }
 
 struct CollectUserGPSView: View {
   let viewModel = CollectUserGPSViewModel()
   @StateObject var userManager: UserManager
   @State private var lastUpdatedDate: Date? = nil
+  @State private var presentAlert = false
   
   var body: some View {
     VStack {
@@ -64,6 +77,10 @@ struct CollectUserGPSView: View {
         }
         .buttonStyle(DefaultButtonStyle())
         .listRowSeparator(.hidden)
+        
+        Button("위치 서비스 설정") {
+          presentAlert = true
+        }
       }
       
       Button("로그아웃") {
@@ -72,11 +89,28 @@ struct CollectUserGPSView: View {
       }
       .buttonStyle(BorderedProminentButtonStyle())
     }
+    .alert("위치 접근 허용 변경", isPresented: $presentAlert, actions: {
+      Button("설정", role: .none) {
+        viewModel.openAppLocationSettings()
+      }
+      
+      Button("닫기", role: .cancel) {
+        
+      }
+    }, message: {
+      Text("앱의 원활한 데이터 수집을 위해\n 위치 접근 허용을 '항상'으로 변경해주세요.")
+    })
     .onAppear {
       lastUpdatedDate = viewModel.getLastUpdatedDate()
+      if !viewModel.isAuthorizationStatusAlways() {
+        presentAlert = true
+      }
     }
     .refreshable {
       lastUpdatedDate = viewModel.getLastUpdatedDate()
+      if !viewModel.isAuthorizationStatusAlways() {
+        presentAlert = true
+      }
     }
   }
 }
