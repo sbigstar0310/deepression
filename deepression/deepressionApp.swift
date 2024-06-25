@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return false
     }
     
+    // 위치정보 권한 요청
+    locationManager.requestLocationPermission()
+    
     // 네트워크 모니터링 시작
     NetworkManager.shared.startMonitoring()
     
@@ -30,9 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.sbigstar.deepression.refresh", using: nil) { task in
       self.handleAppRefresh(task: task as! BGAppRefreshTask)
     }
-    
-    // 위치정보 권한 요청
-    locationManager.requestLocationPermission()
     
     // 백그라운드 스케줄 작업을 예약
     scheduleAppRefresh()
@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   private func handleAppRefresh(task: BGAppRefreshTask) {
+    print("background fetch 실행")
     guard let locationManager = locationManager else {
       return
     }
@@ -58,14 +59,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     DispatchQueue.global(qos: .background).async {
-      // 기존 업데이트 정지
-      locationManager.stopUpdatingLocation()
-      locationManager.stopSignificantChangeUpdates()
-      
-      // 새로 위치 업데이트 실행
+      print("위치 업데이트 시작")
+      // 위치 업데이트 실행
+      // startUpdatingLocation() 메서드를 연속으로 여러 번 호출한다고 해서 자동으로 새로운 위치 이벤트가 생성되지는 않습니다.
       locationManager.startUpdatingLocation()
       locationManager.startSignificantChangeUpdates()
       
+      print("작업 완료 처리")
       // 작업 완료 처리 (여기서는 단순히 성공으로 설정, 실제 구현에서는 적절한 완료 로직 필요)
       task.setTaskCompleted(success: true)
     }
