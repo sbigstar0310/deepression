@@ -76,6 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 여러 번 스케줄 요청이 제출되더라도, 실제로 스케줄된 작업은 최신 작업 하나만 유지된다.
     let request = BGAppRefreshTaskRequest(identifier: "com.sbigstar.deepression.refresh")
     
+    // 최소 1분 이후에 스케줄이 되도록 설정 (배터리 절약)
+    request.earliestBeginDate = Date().addingTimeInterval(1 * 60)
+    
     do {
       try BGTaskScheduler.shared.submit(request)
     } catch {
