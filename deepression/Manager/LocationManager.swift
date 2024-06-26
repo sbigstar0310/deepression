@@ -14,6 +14,7 @@ class LocationManager: NSObject, ObservableObject {
   
   private let locationManager = CLLocationManager()
   private let networkManager = NetworkManager.shared
+  private let wifiManager = WifiManager.shared
   private let fbUpdateManager = FBUpdateManager.shared
   
   static let shared = LocationManager()
@@ -31,11 +32,6 @@ class LocationManager: NSObject, ObservableObject {
   }
   
   func startUpdatingLocation() {
-    guard CLLocationManager.locationServicesEnabled() else {
-      print("CLLocationManagager: 위치 정보를 받아올 수 없음.")
-      return
-    }
-    
     guard CLLocationManager.headingAvailable() else {
       print("CLLocationManagager: 헤딩(방향) 정보를 사용할 수 없음.")
       return
@@ -88,7 +84,7 @@ extension LocationManager: CLLocationManagerDelegate {
       
       lock = true
       
-      let wifi = await networkManager.getCurrentWiFiInfo()
+      let wifi = await wifiManager.getCurrentWiFiInfo()
       let location = Location(updatedDate: Date(), latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
       await fbUpdateManager.updateWifiToFirebase(wifi: wifi)
       await fbUpdateManager.updateLocationToFireBase(location: location)
