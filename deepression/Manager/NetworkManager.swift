@@ -8,7 +8,6 @@
 
 import Foundation
 import Network
-import NetworkExtension
 
 // 네트워크 연결타입
 enum ConnectionType {
@@ -56,7 +55,6 @@ class NetworkManager {
   }
   
   // 네트워크 연결 타입
-  /*
   func getConnectionType(_ path: NWPath) {
     if path.usesInterfaceType(.wifi) {
       connectionType = .wifi
@@ -67,22 +65,5 @@ class NetworkManager {
     } else {
       connectionType = .unknown
     }
-  }
-  */
-  
-  // WIFI 연결 정보 가져오기
-  func getCurrentWiFiInfo() async -> Wifi? {
-    let wifi = await NEHotspotNetwork.fetchCurrent()
-    
-    guard let wifi = wifi else {
-      return nil
-    }
-    
-    let updatedDate = Date()
-    let ssid = wifi.ssid
-    let bssid = wifi.bssid
-    let rssi = wifi.signalStrength
-    
-    return Wifi(updatedDate: updatedDate, ssid: ssid, bssid: bssid, rssi: rssi)
   }
 }
