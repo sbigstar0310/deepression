@@ -64,15 +64,9 @@ actor FBUpdateManager {
     userDefaultManager.setLastUpdateDate(date: max(lastUpdatedDate, location.updatedDate))
   }
   
-  func updateWifiToFirebase(wifi: Wifi?) async {
+  func updateWifiToFirebase(wifi: Wifi) async {
     // 네트워크 상태 확인
     guard isNetworkValid() else {
-      return
-    }
-    
-    // Wifi가 nil인지 확인
-    // -> WIFI 연결이 아님 (셀룰러, 이더넷, ...)
-    guard let wifi = wifi else {
       return
     }
     
