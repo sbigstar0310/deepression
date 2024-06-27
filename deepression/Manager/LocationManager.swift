@@ -13,7 +13,6 @@ class LocationManager: NSObject, ObservableObject {
   @Published var authorizationStatus: CLAuthorizationStatus?
   
   private let locationManager = CLLocationManager()
-  private let networkManager = NetworkManager.shared
   private let wifiManager = WifiManager.shared
   private let fbUpdateManager = FBUpdateManager.shared
   
@@ -87,7 +86,7 @@ extension LocationManager: CLLocationManagerDelegate {
       let wifi = await wifiManager.getCurrentWiFiInfo()
       let location = Location(updatedDate: Date(), latitude: cllocation.coordinate.latitude, longitude: cllocation.coordinate.longitude)
       await fbUpdateManager.updateWifiToFirebase(wifi: wifi)
-      await fbUpdateManager.updateLocationToFireBase(location: location)
+      await fbUpdateManager.updateLocationToFirebase(location: location)
       
       lock = false
     }
