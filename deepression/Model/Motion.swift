@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import CoreMotion
+
+struct Motion {
+  var updatedDate: Date
+  var accelerationField: CMAcceleration?
+  var magneticField: CMMagneticField?
+  var userAccelerationField: CMAcceleration?
+  var userMagneticField: CMMagneticField?
+}
