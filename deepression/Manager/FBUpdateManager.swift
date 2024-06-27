@@ -95,7 +95,7 @@ actor FBUpdateManager {
     }
   }
   
-  func updateLocationToFireBase(location: Location) async {
+  func updateLocationToFirebase(location: Location) async {
     // 업데이트 시각
     let updateDate = location.updatedDate
     
@@ -132,6 +132,27 @@ actor FBUpdateManager {
       
       // Firebase 업로드 에러가 발생한 경우, 오프라인 싱크
       doOfflineSync(location: location)
+    }
+  }
+  
+  func updateMotionToFirebase(motion: Motion) async {
+    // 업데이트 시각
+    let updateDate = motion.updatedDate
+    
+    // 네트워크 상태 확인
+    guard isNetworkValid() else {
+      return
+    }
+    
+    // 유저 로그인 상태 확인
+    guard isUserLoginValid(), let user = userManager.user else {
+      return
+    }
+    
+    do {
+      try await fbRealtimeDataManager.addMotionData(user: user, motion: motion)
+    } catch {
+      print("Firebase에 location 업데이트 오류: \(error.localizedDescription)")
     }
   }
 }
