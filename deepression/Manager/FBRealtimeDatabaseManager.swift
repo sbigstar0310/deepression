@@ -26,6 +26,27 @@ class FBRealtimeDataManager: ObservableObject {
     case referenceUnavailable
   }
   
+  func addLocationData(user: User, location: Location) async throws {
+    // 유저 정보 (User Info)
+    guard let ref = ref else {
+      print("error in getting ref")
+      throw FBRealtimeDataManagerError.referenceUnavailable
+    }
+    
+    let childRef = ref.child("Users").child("\(user.id)").child("Locations").childByAutoId()
+    
+    do {
+      try await childRef.setValue([
+        "id" : childRef.key,
+        "latitude" : "\(location.latitude)",
+        "longitude" : "\(location.longitude)",
+        "obtained_at" : fbDateFormatter.string(from: location.updatedDate),
+      ])
+    } catch {
+      throw error
+    }
+  }
+  
   func addWifiData(user: User, wifi: Wifi) async throws {
     guard let ref = ref else {
       print("error in getting ref")
@@ -47,21 +68,38 @@ class FBRealtimeDataManager: ObservableObject {
     }
   }
   
-  func addLocationData(user: User, location: Location) async throws {
-    // 유저 정보 (User Info)
+  func addMotionData(user: User, motion: Motion) async throws {
     guard let ref = ref else {
       print("error in getting ref")
       throw FBRealtimeDataManagerError.referenceUnavailable
     }
     
-    let childRef = ref.child("Users").child("\(user.id)").child("Locations").childByAutoId()
+    let childRef = ref.child("Users").child("\(user.id)").child("Motions").childByAutoId()
     
     do {
       try await childRef.setValue([
         "id" : childRef.key,
-        "latitude" : "\(location.latitude)",
-        "longitude" : "\(location.longitude)",
-        "obtained_at" : fbDateFormatter.string(from: location.updatedDate),
+        "accelerationField" : [
+          "x" : motion.accelerationField!.x,
+          "y" : motion.accelerationField!.y,
+          "z" : motion.accelerationField!.z,
+        ],
+        "magneticField" : [
+          "x" : motion.magneticField!.x,
+          "y" : motion.magneticField!.y,
+          "z" : motion.magneticField!.z,
+        ],
+        "userAccelerationField" : [
+          "x" : motion.userAccelerationField!.x,
+          "y" : motion.userAccelerationField!.y,
+          "z" : motion.userAccelerationField!.z,
+        ],
+        "userMagneticField" : [
+          "x" : motion.userMagneticField!.x,
+          "y" : motion.userMagneticField!.y,
+          "z" : motion.userMagneticField!.z,
+        ],
+        "obtained_at" : fbDateFormatter.string(from: motion.updatedDate),
       ])
     } catch {
       throw error
