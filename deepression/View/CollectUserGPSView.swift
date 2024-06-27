@@ -12,6 +12,7 @@ class CollectUserGPSViewModel {
   private let locationManager = LocationManager.shared
   private let authManager = AuthManager.shared
   private let userDefaultManager = UserDefaultManager()
+  private let motionManager = MotionManager.shared
   
   func getLastUpdatedDate() -> Date? {
     // UserDefault에서 최근 업데이트 된 날짜를 가져온다.
@@ -24,9 +25,16 @@ class CollectUserGPSViewModel {
   }
   
   func stopUpdatingUserLocation() {
-    print("위치/Wifi 정보 받기 종료")
     locationManager.stopUpdatingLocation()
     locationManager.stopSignificantChangeUpdates()
+  }
+  
+  func startUpdatingMotion() {
+    motionManager.startMotionUpdates()
+  }
+  
+  func stopUpdatingMotion() {
+    motionManager.stopMotionUpdates()
   }
   
   func doLogOut() {
@@ -68,11 +76,30 @@ struct CollectUserGPSView: View {
           .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         ) {
           Button("위치/Wifi 정보 받기 시작") {
+            print("위치/Wifi 정보 받기 시작")
             viewModel.startUpdatingUserLocation()
           }
           
           Button("위치/Wifi 정보 받기 종료") {
+            print("위치/Wifi 정보 받기 종료")
             viewModel.stopUpdatingUserLocation()
+          }
+        }
+        .buttonStyle(DefaultButtonStyle())
+        .listRowSeparator(.hidden)
+        
+        Section(header: Text("움직임 정보")
+          .font(.title3)
+          .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+        ) {
+          Button("움직임 정보 받기 시작") {
+            print("움직임 정보 받기 시작")
+            viewModel.startUpdatingMotion()
+          }
+          
+          Button("움직임 정보 받기 종료") {
+            print("움직임 정보 받기 종료")
+            viewModel.stopUpdatingMotion()
           }
         }
         .buttonStyle(DefaultButtonStyle())
