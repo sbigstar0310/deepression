@@ -17,6 +17,8 @@
 		9E3C63982C293BF7001154DC /* myNetWorkExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9E3C638D2C293BF7001154DC /* myNetWorkExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9E3C639F2C2945E5001154DC /* Wifi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C639E2C2945E5001154DC /* Wifi.swift */; };
 		9E3C63C12C2BDA6F001154DC /* WIfiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */; };
+		9E3C63C32C2CF63B001154DC /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C22C2CF63B001154DC /* MotionManager.swift */; };
+		9E3C63C52C2D1F67001154DC /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C42C2D1F67001154DC /* Motion.swift */; };
 		9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */; };
 		9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */; };
 		9EFC8FFC2C210BAA004DB3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		9E3C639D2C2944BA001154DC /* deepression.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = deepression.entitlements; sourceTree = "<group>"; };
 		9E3C639E2C2945E5001154DC /* Wifi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wifi.swift; sourceTree = "<group>"; };
 		9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIfiManager.swift; sourceTree = "<group>"; };
+		9E3C63C22C2CF63B001154DC /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		9E3C63C42C2D1F67001154DC /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
 		9EFC8FF42C210BA8004DB3C2 /* deepression.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deepression.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deepressionApp.swift; sourceTree = "<group>"; };
 		9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -182,8 +186,9 @@
 			children = (
 				9E0F549F2C251D22007F0C48 /* FBUpdateManager.swift */,
 				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
-				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
 				9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */,
+				9E3C63C22C2CF63B001154DC /* MotionManager.swift */,
+				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
 				9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */,
 				9EFC901C2C216679004DB3C2 /* AuthManager.swift */,
 				9EFC90202C216F28004DB3C2 /* UserManager.swift */,
@@ -199,6 +204,7 @@
 				9EFC90222C217692004DB3C2 /* DateFormatter.swift */,
 				9E0F549D2C251850007F0C48 /* Location.swift */,
 				9E3C639E2C2945E5001154DC /* Wifi.swift */,
+				9E3C63C42C2D1F67001154DC /* Motion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				9E0F549E2C251850007F0C48 /* Location.swift in Sources */,
 				9EFC90232C217692004DB3C2 /* DateFormatter.swift in Sources */,
 				9E3C63C12C2BDA6F001154DC /* WIfiManager.swift in Sources */,
+				9E3C63C32C2CF63B001154DC /* MotionManager.swift in Sources */,
 				9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */,
 				9E0F54A42C2537A0007F0C48 /* HomeTabView.swift in Sources */,
 				9EFC900D2C216168004DB3C2 /* User.swift in Sources */,
@@ -351,6 +358,7 @@
 				9E3C639F2C2945E5001154DC /* Wifi.swift in Sources */,
 				9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */,
 				9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */,
+				9E3C63C52C2D1F67001154DC /* Motion.swift in Sources */,
 				9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
