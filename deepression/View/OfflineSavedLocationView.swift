@@ -60,7 +60,7 @@ struct OfflineSavedLocationView: View {
         // 기존 데이터 모두 서버에 업로드 시도
         Task {
           for (index, location) in savedLocations.enumerated() {
-            await fbUpdateManager.updateLocationToFireBase(location: location)
+            await fbUpdateManager.updateLocationToFirebase(location: location)
             progress = Double((index / savedLocations.count))
           }
         }
