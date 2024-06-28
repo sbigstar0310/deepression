@@ -8,10 +8,15 @@
 import Foundation
 import CoreMotion
 
-struct Motion {
+struct Motion: Codable, Hashable {
   var updatedDate: Date
-  var accelerationField: CMAcceleration?
-  var magneticField: CMMagneticField?
-  var userAccelerationField: CMAcceleration?
-  var userMagneticField: CMMagneticField?
+  var dataType: DataType
+  let x: Double
+  let y: Double
+  let z: Double
+  
+  enum DataType: Codable {
+    case accelerationField
+    case mangeticField
+  }
 }
