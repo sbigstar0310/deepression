@@ -9,32 +9,22 @@ import Foundation
 import SwiftUI
 
 class CollectUserGPSViewModel {
-  private let locationManager = LocationManager.shared
+  private let overallDataManager = OverallDataManager.shared
   private let authManager = AuthManager.shared
   private let userDefaultManager = UserDefaultManager()
-  private let motionManager = MotionManager.shared
+  private let locationManager = LocationManager.shared
   
   func getLastUpdatedDate() -> Date? {
     // UserDefault에서 최근 업데이트 된 날짜를 가져온다.
     userDefaultManager.getLastUpdateDate()
   }
   
-  func startUpdatingUserLocation() {
-    locationManager.startUpdatingLocation()
-    locationManager.startSignificantChangeUpdates()
+  func startUpdateUserData() {
+    overallDataManager.startDataUpdating()
   }
   
-  func stopUpdatingUserLocation() {
-    locationManager.stopUpdatingLocation()
-    locationManager.stopSignificantChangeUpdates()
-  }
-  
-  func startUpdatingMotion() {
-    motionManager.startMotionUpdates()
-  }
-  
-  func stopUpdatingMotion() {
-    motionManager.stopMotionUpdates()
+  func stopUpdateUserData() {
+    overallDataManager.stopDataUpdating()
   }
   
   func doLogOut() {
@@ -75,35 +65,19 @@ struct CollectUserGPSView: View {
           .font(.title3)
           .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         ) {
-          Button("위치/Wifi 정보 받기 시작") {
-            print("위치/Wifi 정보 받기 시작")
-            viewModel.startUpdatingUserLocation()
+          Button("유저 정보 (위치, Wifi, Motion) 받기 시작") {
+            print("유저 정보 (위치, Wifi, Motion) 받기 시작")
+            viewModel.startUpdateUserData()
           }
           
-          Button("위치/Wifi 정보 받기 종료") {
-            print("위치/Wifi 정보 받기 종료")
-            viewModel.stopUpdatingUserLocation()
+          Button("유저 정보 (위치, Wifi, Motion) 받기 종료") {
+            print("유저 정보 (위치, Wifi, Motion) 받기 종료")
+            viewModel.stopUpdateUserData()
           }
         }
         .buttonStyle(DefaultButtonStyle())
         .listRowSeparator(.hidden)
         
-        Section(header: Text("움직임 정보")
-          .font(.title3)
-          .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-        ) {
-          Button("움직임 정보 받기 시작") {
-            print("움직임 정보 받기 시작")
-            viewModel.startUpdatingMotion()
-          }
-          
-          Button("움직임 정보 받기 종료") {
-            print("움직임 정보 받기 종료")
-            viewModel.stopUpdatingMotion()
-          }
-        }
-        .buttonStyle(DefaultButtonStyle())
-        .listRowSeparator(.hidden)
         
         Button("위치 서비스 설정") {
           presentAlert = true
