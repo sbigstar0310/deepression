@@ -8,12 +8,73 @@
 import Foundation
 import SwiftUI
 
-struct OfflineSavedLocationView: View {
-  let userDefaultManager = UserDefaultManager()
-  let fbUpdateManager = FBUpdateManager.shared
+@MainActor
+class OfflineSavedLocationViewModel: ObservableObject {
+  @Published var progress = 0.0
+  @Published var savedLocations: [Location] = []
+  @Published var savedMotions: [Motion] = []
   
-  @State private var savedLocations: [Location] = []
-  @State private var progress: Double = 0
+  private let userDefaultManager = UserDefaultManager()
+  private let fbUpdateManager = FBUpdateManager.shared
+  private var isUpdating = false
+  
+  func tryUpdateOfflineData() {
+    guard !isUpdating else {
+      print("이미 업데이트 중입니다.")
+      return
+    }
+    
+    // Update Lock 걸기
+    isUpdating = true
+    
+    Task {
+      // 기존에 저장된 데이터 삭제
+      userDefaultManager.clearLocation()
+      userDefaultManager.clearMotions()
+      
+      // 데이터의 전체 개수
+      let overallDataCount = savedLocations.count + savedMotions.count
+      
+      // 기존 데이터 모두 서버에 업로드 시도
+      for (index, location) in savedLocations.enumerated() {
+        await fbUpdateManager.updateLocationToFirebase(location: location)
+        await MainActor.run {
+          progress = Double(index + 1) / Double(overallDataCount)
+        }
+      }
+      
+      for (index, motion) in savedMotions.enumerated() {
+        await fbUpdateManager.updateMotionToFirebase(motion: motion)
+        await MainActor.run {
+          progress = Double(savedLocations.count + index + 1) / Double(overallDataCount)
+        }
+      }
+      
+      await MainActor.run {
+        progress = 1.0
+      }
+      
+      // 데이터 변경사항 viewModel에 반영
+      await initializeView()
+      
+      // Update Lock 풀기
+      isUpdating = false
+    }
+  }
+  
+  func initializeView() async {
+    // 로딩이 완료되면 진행도를 0으로 초기화
+    await MainActor.run {
+      progress = (progress == 1) ? 0 : progress
+    }
+    // UserDefault에서 [location], [Motion] 받아오기
+    savedLocations = userDefaultManager.getLocations() ?? []
+    savedMotions = userDefaultManager.getMotions() ?? []
+  }
+}
+
+struct OfflineSavedLocationView: View {
+  @StateObject var viewModel = OfflineSavedLocationViewModel()
   
   var body: some View {
     VStack {
@@ -32,11 +93,11 @@ struct OfflineSavedLocationView: View {
           .foregroundStyle(.blue)
           .opacity(0.4)
         
-        RingDashProgressView(progress: progress)
+        RingDashProgressView(progress: viewModel.progress)
           .frame(width: 250, height: 250)
         
         VStack {
-          Text("\(savedLocations.count) 개")
+          Text("\(viewModel.savedLocations.count + viewModel.savedMotions.count) 개")
             .font(.title)
             .bold()
         }
@@ -53,30 +114,14 @@ struct OfflineSavedLocationView: View {
           .font(.title3)
       }
       .onTapGesture {
-        // 데이터 전송 코드
-        // 기존에 저장된 데이터 삭제
-        userDefaultManager.clearLocation()
-        
-        // 기존 데이터 모두 서버에 업로드 시도
-        Task {
-          for (index, location) in savedLocations.enumerated() {
-            await fbUpdateManager.updateLocationToFirebase(location: location)
-            progress = Double((index / savedLocations.count))
-          }
-        }
+        viewModel.tryUpdateOfflineData()
       }
     }
-    .onAppear {
-      // 로딩이 완료되면 진행도를 0으로 초기화
-      progress = (progress == 1) ? 0 : progress
-      // UserDefault에서 [location] 받아오기
-      savedLocations = userDefaultManager.getLocations() ?? []
+    .task {
+      await viewModel.initializeView()
     }
     .refreshable {
-      // 로딩이 완료되면 진행도를 0으로 초기화
-      progress = (progress == 1) ? 0 : progress
-      // UserDefault에서 [location] 받아오기
-      savedLocations = userDefaultManager.getLocations() ?? []
+      await viewModel.initializeView()
     }
   }
 }
