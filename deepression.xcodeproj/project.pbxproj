@@ -19,12 +19,13 @@
 		9E3C63C12C2BDA6F001154DC /* WIfiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */; };
 		9E3C63C32C2CF63B001154DC /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C22C2CF63B001154DC /* MotionManager.swift */; };
 		9E3C63C52C2D1F67001154DC /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C42C2D1F67001154DC /* Motion.swift */; };
+		9E3C63C72C2D5750001154DC /* OverallDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C63C62C2D5750001154DC /* OverallDataManager.swift */; };
 		9EFC8FF82C210BA8004DB3C2 /* deepressionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */; };
 		9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */; };
 		9EFC8FFC2C210BAA004DB3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFB2C210BAA004DB3C2 /* Assets.xcassets */; };
 		9EFC8FFF2C210BAA004DB3C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC8FFE2C210BAA004DB3C2 /* Preview Assets.xcassets */; };
 		9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90052C2121B5004DB3C2 /* LocationManager.swift */; };
-		9EFC900A2C216143004DB3C2 /* FBRealtimeDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */; };
+		9EFC900A2C216143004DB3C2 /* FBRealtimeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC90092C216143004DB3C2 /* FBRealtimeDataManager.swift */; };
 		9EFC900D2C216168004DB3C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC900C2C216168004DB3C2 /* User.swift */; };
 		9EFC900F2C2161AF004DB3C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC900E2C2161AF004DB3C2 /* GoogleService-Info.plist */; };
 		9EFC90122C21621E004DB3C2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9EFC90112C21621E004DB3C2 /* FirebaseAnalytics */; };
@@ -79,6 +80,7 @@
 		9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIfiManager.swift; sourceTree = "<group>"; };
 		9E3C63C22C2CF63B001154DC /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		9E3C63C42C2D1F67001154DC /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
+		9E3C63C62C2D5750001154DC /* OverallDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverallDataManager.swift; sourceTree = "<group>"; };
 		9EFC8FF42C210BA8004DB3C2 /* deepression.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deepression.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EFC8FF72C210BA8004DB3C2 /* deepressionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deepressionApp.swift; sourceTree = "<group>"; };
 		9EFC8FF92C210BA8004DB3C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,7 +88,7 @@
 		9EFC8FFE2C210BAA004DB3C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9EFC90052C2121B5004DB3C2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9EFC90072C2128E2004DB3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRealtimeDatabaseManager.swift; sourceTree = "<group>"; };
+		9EFC90092C216143004DB3C2 /* FBRealtimeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBRealtimeDataManager.swift; sourceTree = "<group>"; };
 		9EFC900C2C216168004DB3C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9EFC900E2C2161AF004DB3C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9EFC90182C216527004DB3C2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,17 @@
 			path = myNetWorkExtension;
 			sourceTree = "<group>";
 		};
+		9E3C63C82C2D5833001154DC /* OverallDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				9E3C63C62C2D5750001154DC /* OverallDataManager.swift */,
+				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
+				9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */,
+				9E3C63C22C2CF63B001154DC /* MotionManager.swift */,
+			);
+			path = OverallDataManager;
+			sourceTree = "<group>";
+		};
 		9EFC8FEB2C210BA8004DB3C2 = {
 			isa = PBXGroup;
 			children = (
@@ -184,14 +197,12 @@
 		9EFC90082C21612F004DB3C2 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				9E3C63C82C2D5833001154DC /* OverallDataManager */,
 				9E0F549F2C251D22007F0C48 /* FBUpdateManager.swift */,
-				9EFC90052C2121B5004DB3C2 /* LocationManager.swift */,
-				9E3C63C02C2BDA6F001154DC /* WIfiManager.swift */,
-				9E3C63C22C2CF63B001154DC /* MotionManager.swift */,
 				9EFC90502C23E53B004DB3C2 /* NetworkManager.swift */,
-				9EFC90092C216143004DB3C2 /* FBRealtimeDatabaseManager.swift */,
-				9EFC901C2C216679004DB3C2 /* AuthManager.swift */,
+				9EFC90092C216143004DB3C2 /* FBRealtimeDataManager.swift */,
 				9EFC90202C216F28004DB3C2 /* UserManager.swift */,
+				9EFC901C2C216679004DB3C2 /* AuthManager.swift */,
 				9E0F549B2C250C16007F0C48 /* UserDefaultManager.swift */,
 			);
 			path = Manager;
@@ -345,7 +356,7 @@
 				9E0F54A22C2522F5007F0C48 /* OfflineSavedLocationView.swift in Sources */,
 				9EFC901D2C216679004DB3C2 /* AuthManager.swift in Sources */,
 				9EFC8FFA2C210BA8004DB3C2 /* ContentView.swift in Sources */,
-				9EFC900A2C216143004DB3C2 /* FBRealtimeDatabaseManager.swift in Sources */,
+				9EFC900A2C216143004DB3C2 /* FBRealtimeDataManager.swift in Sources */,
 				9EFC901B2C216535004DB3C2 /* RegisterView.swift in Sources */,
 				9E0F549E2C251850007F0C48 /* Location.swift in Sources */,
 				9EFC90232C217692004DB3C2 /* DateFormatter.swift in Sources */,
@@ -358,6 +369,7 @@
 				9E3C639F2C2945E5001154DC /* Wifi.swift in Sources */,
 				9EFC90062C2121B5004DB3C2 /* LocationManager.swift in Sources */,
 				9EFC90212C216F28004DB3C2 /* UserManager.swift in Sources */,
+				9E3C63C72C2D5750001154DC /* OverallDataManager.swift in Sources */,
 				9E3C63C52C2D1F67001154DC /* Motion.swift in Sources */,
 				9EFC901F2C216C1D004DB3C2 /* CollectUserGPSView.swift in Sources */,
 			);
