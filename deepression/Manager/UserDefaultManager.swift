@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - LastUpdateDate의 코드
 class UserDefaultManager {
   func setLastUpdateDate(date: Date) {
     let defaults = UserDefaults.standard
@@ -18,7 +19,10 @@ class UserDefaultManager {
     let defaults = UserDefaults.standard
     return defaults.object(forKey: "lastUpdateDate") as? Date
   }
-  
+}
+
+// MARK: - Locations의 코드
+extension UserDefaultManager {
   func setLocations(locations: [Location]) {
     let defaults = UserDefaults.standard
     let encoder = JSONEncoder()
@@ -53,6 +57,46 @@ class UserDefaultManager {
   func clearLocation() {
     let defaults = UserDefaults.standard
     defaults.removeObject(forKey: "locations")
+    defaults.synchronize()
+  }
+}
+
+// MARK: - Motions의 코드
+extension UserDefaultManager {
+  func setMotions(motions: [Motion]) {
+    let defaults = UserDefaults.standard
+    let encoder = JSONEncoder()
+    do {
+      let data = try encoder.encode(motions)
+      defaults.set(data, forKey: "motions")
+    } catch {
+      print("Failed to encode motions: \(error)")
+    }
+  }
+  
+  func getMotions() -> [Motion]? {
+    let defaults = UserDefaults.standard
+    if let data = defaults.data(forKey: "motions") {
+      let decoder = JSONDecoder()
+      do {
+        let motions = try decoder.decode([Motion].self, from: data)
+        return motions
+      } catch {
+        print("Failed to decode motions: \(error)")
+      }
+    }
+    return nil
+  }
+  
+  func addMotion(motion: Motion) {
+    var motions = getMotions() ?? []
+    motions.append(motion)
+    setMotions(motions: motions)
+  }
+  
+  func clearMotions() {
+    let defaults = UserDefaults.standard
+    defaults.removeObject(forKey: "motions")
     defaults.synchronize()
   }
 }
