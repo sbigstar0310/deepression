@@ -13,6 +13,7 @@ import FirebaseAuth
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
   private var locationManager: LocationManager? = nil
+  private var overallDataManager: OverallDataManager? = nil
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // firebase 시작
@@ -20,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     locationManager = LocationManager.shared
     guard let locationManager = locationManager else {
+      return false
+    }
+    overallDataManager = OverallDataManager.shared
+    guard let overallDataManager = overallDataManager else {
       return false
     }
     
@@ -46,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   private func handleAppRefresh(task: BGAppRefreshTask) {
     print("background fetch 실행")
-    guard let locationManager = locationManager else {
+    guard let overallDataManager = overallDataManager else {
       return
     }
     
@@ -59,11 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     DispatchQueue.global(qos: .background).async {
-      print("위치 업데이트 시작")
-      // 위치 업데이트 실행
-      // startUpdatingLocation() 메서드를 연속으로 여러 번 호출한다고 해서 자동으로 새로운 위치 이벤트가 생성되지는 않습니다.
-      locationManager.startUpdatingLocation()
-      locationManager.startSignificantChangeUpdates()
+      print("사용자 데이터 업데이트 시작")
+      // 사용자 데이터 업데이트 실행, 중복 실행 시작 가능
+      overallDataManager.startDataUpdating()
       
       print("작업 완료 처리")
       // 작업 완료 처리 (여기서는 단순히 성공으로 설정, 실제 구현에서는 적절한 완료 로직 필요)
