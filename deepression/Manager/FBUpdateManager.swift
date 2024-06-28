@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 actor FBUpdateManager {
-  private let fbRealtimeDataManager = FBRealtimeDataManager.shared
+  private let fbRealtimeDataManager = FBRealtimeDataManager()
   private let userManager = UserManager.shared
   private let userDefaultManager = UserDefaultManager()
   private let networkManager = NetworkManager.shared
@@ -19,27 +19,6 @@ actor FBUpdateManager {
   
   static let shared = FBUpdateManager()
   private init() {}
-  
-  func isUpdateIntervalValid(intervalMinute: Int, updateDate: Date) -> Bool {
-    let lastUpdatedDate = userDefaultManager.getLastUpdateDate() ?? Date(timeIntervalSince1970: 0)
-    
-    // 마지막 업데이트 날짜로부터 업데이트 간격(분) 구하기
-    guard let differenceInMinutes = Calendar.current.dateComponents([.minute], from: lastUpdatedDate, to: updateDate).minute else {
-      print("오류: 시간 차이가 nil입니다.")
-      return false
-    }
-    
-    if differenceInMinutes < 0 {
-      // 과거의 업데이트 (오프라인 싱크)의 경우에는 업데이트 허용
-      return true
-    } else if 0 <= differenceInMinutes && differenceInMinutes < intervalMinute {
-      // 시간 차이가 intervalMinute 이내인 경우: 업데이트 하지 않기
-      return false
-    } else {
-      // 시간 차이가 intervalMinute 이상인 경우: 업데이트 허용
-      return true
-    }
-  }
   
   func isNetworkValid() -> Bool {
     // 네트워크 상태를 점검
@@ -73,11 +52,6 @@ actor FBUpdateManager {
     // 업데이트 시각
     let updatedDate = wifi.updatedDate
     
-    // 15분의 업데이트 간격을 가지는지 확인
-    if !isUpdateIntervalValid(intervalMinute: minIntervalMinute, updateDate: updatedDate) {
-      return
-    }
-    
     // 유저 로그인 상태 확인
     guard isUserLoginValid(), let user = userManager.user else {
       return
@@ -98,11 +72,6 @@ actor FBUpdateManager {
   func updateLocationToFirebase(location: Location) async {
     // 업데이트 시각
     let updateDate = location.updatedDate
-    
-    // 15분의 업데이트 간격을 가지는지 확인
-    if !isUpdateIntervalValid(intervalMinute: minIntervalMinute, updateDate: updateDate) {
-      return
-    }
     
     // 네트워크 상태 확인
     guard isNetworkValid() else {
