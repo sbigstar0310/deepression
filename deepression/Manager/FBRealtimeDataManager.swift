@@ -67,31 +67,41 @@ class FBRealtimeDataManager: ObservableObject {
     }
   }
   
-  func addMotionData(user: User, motion: Motion) async throws {
+  func addMotionData(user: User, motions: [Motion]) async throws {
     guard let ref = ref else {
       print("error in getting ref")
       throw FBRealtimeDataManagerError.referenceUnavailable
     }
     
-    var filePath: String {
-      switch motion.dataType {
-      case .accelerationField:
-        return "Acceleration"
-      case .mangeticField:
-        return "Magnetic"
+    let userRef = ref.child("Users").child("\(user.id)")
+    
+    var motionUpdates: [String : Any] = [:]
+    
+    for motion in motions {
+      var filePath: String {
+        switch motion.dataType {
+        case .accelerationField:
+          return "Acceleration"
+        case .mangeticField:
+          return "Magnetic"
+        }
       }
-    }
-    
-    let childRef = ref.child("Users").child("\(user.id)").child(filePath).childByAutoId()
-    
-    do {
-      try await childRef.setValue([
-        "id" : childRef.key,
+      
+      let key = userRef.child(filePath).childByAutoId().key!
+      
+      let motionData =  [
+        "id" : key,
         "x" : motion.x,
         "y" : motion.y,
         "z" : motion.z,
         "obtained_at" : fbDateFormatter.string(from: motion.updatedDate),
-      ])
+      ] as [String : Any]
+      
+      motionUpdates["/\(filePath)/\(key)"] = motionData
+    }
+    
+    do {
+      try await userRef.updateChildValues(motionUpdates)
     } catch {
       throw error
     }
