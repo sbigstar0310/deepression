@@ -8,8 +8,17 @@
 
 import Foundation
 
-// MARK: - LastUpdateDate의 코드
+
 class UserDefaultManager {
+  func clearAllData() {
+    clearLastUpdateDate()
+    clearMotions()
+    clearLocation()
+  }
+}
+
+// MARK: - LastUpdateDate의 코드
+extension UserDefaultManager {
   func setLastUpdateDate(date: Date) {
     let defaults = UserDefaults.standard
     defaults.set(date, forKey: "lastUpdateDate")
@@ -18,6 +27,12 @@ class UserDefaultManager {
   func getLastUpdateDate() -> Date? {
     let defaults = UserDefaults.standard
     return defaults.object(forKey: "lastUpdateDate") as? Date
+  }
+  
+  func clearLastUpdateDate() {
+    let defaults = UserDefaults.standard
+    defaults.removeObject(forKey: "lastUpdateDate")
+    defaults.synchronize()
   }
 }
 
