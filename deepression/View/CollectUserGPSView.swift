@@ -27,6 +27,10 @@ class CollectUserGPSViewModel {
     overallDataManager.stopDataUpdating()
   }
   
+  func deleteAllData(user: User) {
+    overallDataManager.deleteAllData(user: user)
+  }
+  
   func doLogOut() {
     authManager.Logout()
   }
@@ -81,6 +85,10 @@ struct CollectUserGPSView: View {
         
         Button("위치 서비스 설정") {
           presentAlert = true
+        }
+        
+        Button("데이터 모두 삭제하기") {
+          viewModel.deleteAllData(user: userManager.user!)
         }
       }
       
