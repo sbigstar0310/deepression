@@ -65,7 +65,7 @@ actor FBUpdateManager {
       print("rssi: \(wifi.rssi)")
       print("---------------------------------------------------------")
     } catch {
-      print("Firebase에 network 업데이트 오류: \(error.localizedDescription)")
+      print("Firebase에 wifi 업데이트 오류: \(error.localizedDescription)")
     }
   }
   
@@ -104,10 +104,7 @@ actor FBUpdateManager {
     }
   }
   
-  func updateMotionToFirebase(motion: Motion) async {
-    // 업데이트 시각
-    let updateDate = motion.updatedDate
-    
+  func updateMotionToFirebase(motions: [Motion]) async {
     // 네트워크 상태 확인
     guard isNetworkValid() else {
       return
@@ -119,9 +116,9 @@ actor FBUpdateManager {
     }
     
     do {
-      try await fbRealtimeDataManager.addMotionData(user: user, motion: motion)
+      try await fbRealtimeDataManager.addMotionData(user: user, motions: motions)
     } catch {
-      print("Firebase에 location 업데이트 오류: \(error.localizedDescription)")
+      print("Firebase에 [motion] 업데이트 오류: \(error.localizedDescription)")
     }
   }
 }
