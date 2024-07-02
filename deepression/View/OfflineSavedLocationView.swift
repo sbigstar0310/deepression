@@ -27,6 +27,10 @@ class OfflineSavedLocationViewModel: ObservableObject {
     // Update Lock 걸기
     isUpdating = true
     
+    // UserDefault에서 [location], [Motion] 받아오기
+    savedLocations = userDefaultManager.getLocations() ?? []
+    savedMotions = userDefaultManager.getMotions() ?? []
+    
     Task {
       // 기존에 저장된 데이터 삭제
       userDefaultManager.clearLocation()
@@ -43,12 +47,7 @@ class OfflineSavedLocationViewModel: ObservableObject {
         }
       }
       
-      for (index, motion) in savedMotions.enumerated() {
-        await fbUpdateManager.updateMotionToFirebase(motion: motion)
-        await MainActor.run {
-          progress = Double(savedLocations.count + index + 1) / Double(overallDataCount)
-        }
-      }
+      await fbUpdateManager.updateMotionToFirebase(motions: savedMotions)
       
       await MainActor.run {
         progress = 1.0
