@@ -13,6 +13,8 @@ class OverallDataManager {
   
   private let locationManager = LocationManager.shared
   private let motionManager = MotionManager.shared
+  private let fbRealtimeDataManager = FBRealtimeDataManager()
+  private let userDefaultManager = UserDefaultManager()
   
   func startDataUpdating() {
     locationManager.startUpdatingLocation()
@@ -24,5 +26,14 @@ class OverallDataManager {
     locationManager.stopUpdatingLocation()
     locationManager.stopSignificantChangeUpdates()
     motionManager.stopMotionUpdates()
+  }
+  
+  func deleteAllData(user: User) {
+    // 기존 업데이트 중지
+    stopDataUpdating()
+    // 서버 데이터 삭제
+    fbRealtimeDataManager.deleteUserData(user: user)
+    // 디바이스 데이터 삭제
+    userDefaultManager.clearAllData()
   }
 }
