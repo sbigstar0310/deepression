@@ -22,7 +22,7 @@ class MotionManager {
     let calendar = Calendar.current
     let components = calendar.dateComponents([.hour, .minute], from: date)
     
-    guard 0 < interval && interval < 60 else {
+    guard 0 <= interval && interval < 60 else {
       // 분의 단위가 아님.
       return false
     }
@@ -64,10 +64,16 @@ class MotionManager {
     // updateInterval 간격으로 업데이트
     motionManager.accelerometerUpdateInterval = updateInterval
     
-    motionManager.startAccelerometerUpdates(to: OperationQueue.main) { [weak self] data, error in
+    // Background Queue 정의
+    let backgroundQueue = OperationQueue()
+    backgroundQueue.name = "Background Queue"
+    backgroundQueue.qualityOfService = .background
+    
+    // update Handler 정의
+    motionManager.startAccelerometerUpdates(to: backgroundQueue) { [weak self] data, error in
       
       guard let self = self else {
-        print("self가 ni입니다.")
+        print("self가 nil입니다.")
         return
       }
       
@@ -84,6 +90,7 @@ class MotionManager {
       let (x, y, z) = (data.acceleration.x, data.acceleration.y, data.acceleration.z)
       
       // 데이터 갱신
+      print("가속도 데이터 갱신 \(fbDateFormatter.string(from: Date()))")
       let currentAccelerometerData = Motion(updatedDate: Date(), dataType: .accelerationField, x: x, y: y, z: z)
       
       // 디바이스에 데이터 저장
@@ -96,9 +103,7 @@ class MotionManager {
          motions.count > 1000 {
         userDefaultManager.clearMotions()
         Task {
-          for motion in motions {
-            await self.fbUpdateManager.updateMotionToFirebase(motion: motion)
-          }
+          await self.fbUpdateManager.updateMotionToFirebase(motions: motions)
         }
       }
     }
@@ -123,7 +128,12 @@ class MotionManager {
     // updateInterval 간격으로 업데이트
     motionManager.magnetometerUpdateInterval = updateInterval
     
-    motionManager.startMagnetometerUpdates(to: OperationQueue.main) { [weak self] data, error in
+    // Background Queue 정의
+    let backgroundQueue = OperationQueue()
+    backgroundQueue.name = "Background Queue"
+    backgroundQueue.qualityOfService = .background
+    
+    motionManager.startMagnetometerUpdates(to: backgroundQueue) { [weak self] data, error in
       guard let self = self else {
         print("self가 ni입니다.")
         return
@@ -142,6 +152,7 @@ class MotionManager {
       let (x, y, z) = (data.magneticField.x, data.magneticField.y, data.magneticField.z)
       
       // 데이터 갱신
+      print("자기장 데이터 갱신 \(fbDateFormatter.string(from: Date()))")
       let currentMagnetometerData = Motion(updatedDate: Date(), dataType: .mangeticField, x: x, y: y, z: z)
       
       // 디바이스에 데이터 저장
